@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .container {
+
+      position: relative;
+    }
+
+    body {
+      background: #333;
+    }
+
+    ul li {
+      float: left;
+      padding: 10px;
+    }
+
+    .icon {
+      position: absolute;
+      right: 0;
+      top: 5px;
+    }
+
+    .clound {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 83px;
+      height: 42px;
+      background: url('./images/cloud.gif') no-repeat;
+      transition: all 0.6s;
+    }
+
+    .big {
+      position: relative;
+      width: 800px;
+      margin: 100px auto;
+      background: #fff;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="big">
+    <div class="clound">
+    </div>
+    <ul class="container">
+      <li>
+        北京校区
+      </li>
+      <li>
+        上海校区
+      </li>
+      <li>
+        上海校区
+      </li>
+      <li>
+        上海校区
+      </li>
+      <li>
+        上海校区
+      </li>
+      <li>
+        关于我们
+      </li>
+      <li>
+        联系我们
+      </li>
+      <li>
+        招贤纳士
+      </li>
+      <div class="icon">
+        <img src="./images/rss.png" alt="">
+      </div>
+    </ul>
+  </div>
+
+  <script>
+    // 获取元素
+    var lis = document.querySelectorAll('.container li');
+    var liwidth = lis[0].offsetWidth;
+    var clound = document.querySelector('.clound');
+    var count = 0;
+    var dis = 0; // 记录点击时候的位置
+    for (var i = 0; i < lis.length; i++) {
+      lis[i].index = i;
+      lis[i].onmouseenter = function () {
+        // 随着鼠标的滑动，云跟着鼠标动，
+        // 获取我当前鼠标的距离到左边
+        var index = this.index
+        var distance = liwidth * index;
+        clound.style.left = distance + 'px';
+      }
+
+      // 当离开li收，云根据是否点击回到对应的位置
+      lis[i].onmouseleave = function () {
+        // 点击
+        if (count > 0) {
+          clound.style.left = dis + "px"
+        } else {
+          // 没有点击
+          clound.style.left = "0"
+        }
+
+      }
+
+      // 当点击了当前那个li,鼠标离开后，云停留再那个位置，在开始滑动，鼠标离开之后，回到点击的那个位置
+      lis[i].onclick = function () {
+        count++;
+        var index = this.index
+        var distance = liwidth * index;
+        // 记录点击的位置
+        dis = distance
+        clound.style.left = distance + 'px';
+      }
+
+    }
+  </script>
+</body>
+
+</html>

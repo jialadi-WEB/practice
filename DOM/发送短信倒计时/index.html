@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    input {
+      outline: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <label for="phone">手机号码</label>
+    <input type="number" id="phone">
+    <button>发送</button>
+  </div>
+  <script>
+    // 获取元素
+    var phone = document.getElementById('phone');
+    var btn = document.querySelector('button');
+
+    var timer = null;
+   
+    btn.onclick = function () {
+      var time = 60;
+      var val = phone.value;
+      if (val === "" || val.length < 11) {
+        alert('内容不能为空或者长度不能小于11位');
+        phone.value = "";
+        return;
+      }
+      // 点击发送，有60秒的倒计时，倒计时的时候按钮是禁止点击的，60秒之后清除定时器，然后出现文字发送
+      timer = setInterval(function () {
+        time--;
+        if (time < 0) {
+          btn.innerText = "发送";
+          clearInterval(timer);
+          btn.disabled = false;
+          phone.value = "";
+        } else {
+          btn.innerText = "还剩" + time + "秒";
+          btn.disabled = true;
+        }
+      }, 1000)
+
+    }
+  </script>
+</body>
+
+</html>

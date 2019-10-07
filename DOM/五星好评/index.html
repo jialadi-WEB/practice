@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      width: 200px;
+      height: 50px;
+      line-height: 40px;
+      margin: 100px auto;
+      border: 1px solid #ccc;
+      overflow: hidden;
+      padding: 0 10px;
+    }
+
+    .left {
+      float: left;
+    }
+
+    .right {
+      float: left;
+      margin-left: 10px;
+      margin-top: 2px;
+      font-weight: 700;
+    }
+
+    img {
+      vertical-align: middle;
+      width: 16px;
+      height: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left">
+      <img src="./star2.png" alt="">
+      <img src="./star2.png" alt="">
+      <img src="./star2.png" alt="">
+      <img src="./star2.png" alt="">
+      <img src="./star2.png" alt="">
+    </div>
+    <div class="right"></div>
+  </div>
+  <script>
+    // 获取元素
+    var imgs = document.querySelectorAll('img');
+    var txt = document.querySelector('.right')
+    // 定义一个全局变量
+    var num = 0;
+
+    //疯转函数根据索引改变星星的颜色
+    function changestar1(index) {
+      for (var j = 0; j < imgs.length; j++) {
+        if (j <= index) {
+          imgs[j].src = "./star1.png";
+        } else {
+          imgs[j].src = "./star2.png"
+        }
+      }
+    }
+
+    for (var i = 0; i < imgs.length; i++) {
+      // 设置自定义属性
+      imgs[i].setAttribute('index', i)
+      // 鼠标移入事件
+      imgs[i].onmouseover = function () {
+        // 根据索引决定有几个是黄色的
+        // 获取自定义属性
+        var idx = this.getAttribute('index');
+        // console.log(idx)
+        switch (idx) {
+          case "0":
+            changestar1(0);
+            txt.innerHTML = '差';
+            break;
+          case "1":
+            changestar1(1);
+            txt.innerHTML = '一般';
+            break;
+          case "2":
+            changestar1(2);
+            txt.innerHTML = '好';
+            break;
+          case "3":
+            changestar1(3);
+            txt.innerHTML = '很好';
+            break;
+          case "4":
+            changestar1(4);
+            txt.innerHTML = '极好';
+            break;
+        }
+
+      }
+      // 鼠标离开事件
+      imgs[i].onmouseout = function () {
+        // 根据判断num的大小看是否有点击事件
+        if (num > 0) {
+          // 解绑鼠标进入事件
+          for (var j = 0; j < imgs.length; j++) {
+            imgs[j].onmouseover = null;
+          }
+        } else {
+          for (var i = 0; i < imgs.length; i++) {
+            imgs[i].src = "./star2.png"
+            txt.innerText = ""
+          }
+        }
+
+      }
+      // 鼠标点击事件
+      imgs[i].onclick = function () {
+        // 获取自定义属性
+        var idx = this.getAttribute('index');
+        switch (idx) {
+          case "0":
+            changestar1(0);
+            num++;
+            txt.innerHTML = '差';
+            break;
+          case "1":
+            changestar1(1);
+            txt.innerHTML = '一般';
+            num++;
+            break;
+          case "2":
+            changestar1(2);
+            txt.innerHTML = '好';
+            num++;
+            break;
+          case "3":
+            changestar1(3);
+            txt.innerHTML = '很好';
+            num++;
+            break;
+          case "4":
+            changestar1(4);
+            txt.innerHTML = '极好';
+            num++;
+            break;
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

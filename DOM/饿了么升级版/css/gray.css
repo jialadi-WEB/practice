@@ -1,0 +1,649 @@
+.main,
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    background: #ccc;
+}
+.main {
+    position: relative;
+    padding-top: 100px;
+}
+
+/* 清除浮动 */
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* 版心 */
+.common {
+    width: 1180px;
+    margin: 0 auto;
+}
+
+/* 左边 */
+.left {
+    float: left;
+    width: 170px;
+}
+
+.left .list {
+    width: 100%;
+}
+
+.left .list li {
+    margin-bottom: 32px;
+}
+
+/* 图标样式 */
+.left .icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+}
+
+/* 粗标题 */
+.left .bold {
+    font-weight: 700;
+    font-size: 18px;
+    font-family: fantasy;
+}
+
+/* 个人中心图标 */
+.left .home i {
+    background: url(../image/icon-home.png);
+}
+
+/* 订单图标 */
+.left .orders i {
+    background: url(../image/icon-orders.png);
+}
+
+/* 个人资产图标 */
+.left .rmb i {
+    background: url(../image/icon-rmb.png);
+}
+
+/* 个人资料图标 */
+.left .user i {
+    background: url(../image/icon-user.png);
+}
+
+/* 收藏图标 */
+.left .user i {
+    background: url(../image/icon-collect.png);
+}
+
+/* 小列表 */
+.left .list-item li {
+    margin: 0;
+    font-size: 14px;
+    margin-bottom: 2px;
+    padding-left: 28px;
+    color: #FFF;
+}
+
+.left h2 {
+    margin-bottom: 15px;
+}
+
+.tabs {
+    cursor: pointer;
+}
+
+/* 右边 */
+.right {
+    position: relative;
+    float: left;
+    width: 1010px;
+}
+
+.right .home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.right .home-top {
+    width: 100%;
+    padding: 30px 0;
+    padding-left: 30px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    box-sizing: border-box;
+}
+
+.right .home-head {
+    float: left;
+    width: 112px;
+    height: 112px;
+    margin-right: 20px;
+}
+
+.right .home-msg {
+    float: left;
+    font-size: 14px;
+    margin-top: 38px;
+}
+
+.right .home-msg span {
+    font-size: 12px;
+    color: #fff;
+}
+
+.right .info {
+    width: 203px;
+    height: 112px;
+    float: left;
+    border-right: 1px solid #eee;
+    box-sizing: border-box;
+
+}
+
+.right .info-msg {
+    text-align: center;
+    padding: 18px 0;
+}
+
+.right .info-msg div {
+    height: 60px;
+    line-height: 60px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+/* home 底部 */
+.right .home-bommon {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 20px 0;
+    border: 1px solid #eee;
+}
+
+.right .home-bommon .title {
+    border-bottom: 2px solid #f4f4f4;
+    position: relative;
+}
+
+.home-bommon .title span {
+    display: inline-block;
+    font-weight: 700;
+    border-bottom: 3px solid #0089dc;
+    color: #666;
+    font-size: 16px;
+    margin-bottom: -3px;
+    padding: 0 10px;
+    height: 27px;
+    cursor: pointer;
+}
+
+.home-bommon .title a {
+    float: right;
+    font-size: 12px;
+}
+
+/* 底部店家 */
+.right .home-store {
+    width: 100%;
+    height: 324px;
+}
+
+.right .home-store-itme {
+    display: table;
+    padding: 20px 0 15px;
+    width: 100%;
+    /* text-align: center; */
+    border-top: 1px solid #eee;
+}
+
+.right .home-store-head {
+    float: left;
+    width: 593px;
+}
+
+.right .home-store-head img {
+    float: left;
+    width: 70px;
+    height: 70px;
+    margin-right: 20px;
+}
+
+.right .home-store-head h2 {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.right .home-store-head p {
+    font-size: 12px;
+    margin: 6px 0;
+    color: #fff;
+}
+
+.right .home-store-head i {
+    color: #f04240;
+}
+
+.right .home-store-time {
+    float: left;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.right .home-store-rmb {
+    float: left;
+    width: 190px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.right .home-store-status {
+    float: left;
+    padding: 12px 0;
+    text-align: center;
+}
+
+.right .home-store-status h2 {
+    font-size: 16px;
+    color: #999;
+    font-weight: 400;
+}
+
+.right .home-store-status p {
+    color: #0089dc;
+    font-size: 12px;
+}
+
+/* 进三个月来的订单 */
+.right .orders {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    border: 1px solid #eee;
+    padding: 20px 18px;
+    min-height: 680px;
+}
+
+.right .orders-title {
+    position: relative;
+    border-bottom: 2px solid #f4f4f4;
+    padding: 0 20px 11px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.right .orders-title-icon {
+    position: absolute;
+    top: -11px;
+    right: 0;
+}
+
+/* 店家图片 */
+.right .orders-title-icon img {
+    width: 186px;
+    height: 55px;
+}
+
+.right .orders-info-extra {
+    float: right;
+    margin: 15px 0 10px 10px;
+    line-height: 30px;
+}
+
+.right .orders-info-extra a {
+    color: #999;
+    font-size: 12px;
+    margin-right: 8px;
+}
+
+/* 头部 */
+.right .orders-info-head {
+    height: 30px;
+    background: #eee;
+    line-height: 30px;
+    padding-left: 8px;
+    font-size: 12px;
+}
+
+.right .orders-info-item {
+    box-sizing: border-box;
+    padding-left: 8px;
+}
+
+.right .orders .home-store-head {
+    width: 450px;
+}
+
+.right .orders .home-store-status {
+    padding: 20px 0;
+}
+
+/* 操作 */
+.right .orders-info-open {
+    float: left;
+    margin-left: 40px;
+}
+
+.right .orders-info-open a {
+    display: inline-block;
+    width: 78px;
+    line-height: 24px;
+    margin: 5px 0;
+    color: #333;
+    border: 1px solid #eee;
+    text-align: center;
+    font-size: 12px;
+}
+
+.right .orders-info-open p {
+    text-align: center;
+    font-size: 12px;
+}
+
+.right .orders .order-btn {
+    float: right;
+    margin-right: 20px;
+    margin-top: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    padding: 0 10px;
+}
+
+/* 我的红包 */
+.right .myhonbao {
+    border: 1px solid #eee;
+    background-color: #ccc;
+    min-height: 680px;
+    padding: 20px 18px;
+}
+
+.right .myhonbao .title {
+    border-bottom: 2px solid #f4f4f4;
+    position: relative;
+}
+
+.right .myhonbao .title span {
+    display: inline-block;
+    font-weight: 700;
+    border-bottom: 3px solid #0089dc;
+    color: #666;
+    font-size: 16px;
+    margin-bottom: -2px;
+    padding: 0 10px;
+    height: 27px;
+    cursor: pointer;
+}
+
+.right .myhonbao-info {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.right .myhonbao-info p {
+    display: inline-block;
+    padding-left: 110px;
+    line-height: 115px;
+    background: url(../image/nodata.6477c5.png) no-repeat;
+    color: #fff;
+}
+
+/* 账户余额 */
+.right .balance {
+    border: 1px solid #eee;
+    background-color: #ccc;
+    min-height: 680px;
+    padding: 20px 18px;
+}
+
+.right .balance-title {
+    border-bottom: 2px solid #f4f4f4;
+    padding: 0 20px 11px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.right .balance-title span {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.right .balance-stress {
+    margin: 12px 0 24px;
+    padding: 19px;
+    background-color: #ccc;
+    border: 1px solid #f3f3f3;
+    font-size: 14px;
+}
+
+.right .balance-stress b {
+    margin: 0 8px;
+    font-weight: 700;
+    color: #f74342;
+    font-size: 24px;
+    font-family: arial;
+}
+
+.right .balance-stress a {
+    display: inline-block;
+    background-color: #bbb;
+    border-color: #bbb;
+    color: #fff;
+    cursor: default;
+    padding: 5px 22px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin-left: 40px;
+}
+
+.right .balance-detail {
+    padding: 0 24px;
+    margin-bottom: 32px;
+}
+
+.right .balance-detail p {
+    margin-bottom: 20px;
+}
+
+.right .balance-detail span {
+    margin-right: 10px;
+    color: #999;
+    font-size: 12px;
+}
+
+.right .balance-detail a {
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 20px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    color: #333;
+}
+
+.right .balance-detail h2 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.right .balance-detail .basic:hover {
+    background: #f6f6f6;
+}
+
+.right .balance-detail .active {
+    background-color: #0089dc;
+    color: #fff;
+}
+
+.right .balance-table {
+    background-color: #ccc;
+    height: 34px;
+    font-size: 12px;
+    border-bottom: 1px solid #eee;
+    line-height: 34px;
+    padding-left: 30px;
+}
+
+.right .balance-table span {
+    margin-right: 190px;
+}
+
+/* 我的金币 */
+.right .mygold {
+    border: 1px solid #eee;
+    background-color: #ccc;
+    min-height: 680px;
+    padding: 20px 18px;
+}
+
+.mygold .balance-stress span {
+    margin-left: 30px;
+    color: #0089dc;
+    cursor: pointer;
+}
+
+.right .user,
+.site {
+    border: 1px solid #eee;
+    background-color: #ccc;
+    min-height: 680px;
+    padding: 20px 18px;
+    font-size: 14px;
+}
+
+.right .user-head {
+    margin-top: 39px;
+    margin-left: 42px;
+}
+
+.right .site-info {
+    padding-top: 15px;
+}
+
+.right .site-item {
+    position: relative;
+    width: 260px;
+    margin-right: 33px;
+    padding: 16px 12px 16px 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.right .site-item p {
+    margin-bottom: 5px;
+}
+
+.right .site-item p:first-child {
+    color: #333;
+    margin-bottom: 18px;
+    padding-right: 60px;
+}
+
+.right .site-edit {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+}
+
+.right .site-edit a {
+    font-size: 12px;
+    color: #bbb;
+    border: 0;
+    background: 0 0;
+    cursor: pointer;
+    width: 30px;
+}
+
+.right .site-item:hover {
+    border: 1px solid #0089dc
+}
+
+.right .site-item:hover a {
+    color: #0089dc;
+}
+
+.right .collect {
+    border: 1px solid #eee;
+    background-color: #ccc;
+    min-height: 680px;
+    padding: 20px 18px;
+}
+.right .collect-info {
+    width: 970px;
+    padding-left: 30px;
+    padding-top: 25px;
+}
+.right .collect-info p{
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+.right .collect-info span{
+    color: red;
+    margin: 0 5px;
+}
+
+/* 换肤 */
+.skin {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    transition: all 0.5s;
+    overflow: hidden;
+}
+.skin .common {
+    height: 100%;
+}
+.skin .title {
+    float: left;
+    height: 100%;
+    line-height: 60px;
+    font-size: 14px;
+}
+.skin .color {
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin-right: 20px;
+    box-sizing: border-box;
+    border: 1px solid #bb6fba;
+    cursor: pointer;
+    line-height: 60px;
+    font-size: 14px;
+    text-align: center;
+}
+.skin .color:hover {
+    border: 1px solid #3bdac9
+}
+
+/* 换肤按钮 */
+.skin-btn {
+    position: absolute;
+    top: 12px;
+    left: 300px;
+    width: 38px;
+    padding-top: 38px;
+    background: url(../image/skin.png) no-repeat;
+    text-align: center;
+    font-size: 12px;
+    z-index: 1;
+    cursor: pointer;
+}

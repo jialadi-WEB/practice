@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none
+    }
+
+    .container {
+      width: 800px;
+      margin: 100px auto;
+    }
+
+    .left,
+    .right {
+      width: 200px;
+      border: 1px solid #ccc;
+      float: left;
+      overflow: hidden;
+
+    }
+
+    .left-top,
+    .right-top {
+      height: 30px;
+      background: #f5f7fa;
+      border-bottom: 1px solid #ccc;
+    }
+
+    ul {
+      margin-top: 15px;
+    }
+
+    ul li {
+      height: 30px;
+      line-height: 30px;
+      margin-left: 10px;
+    }
+
+    ul li input {
+      margin-right: 10px;
+    }
+
+    .circle {
+      float: left;
+      margin: 50px 40px;
+    }
+
+    .moveLeft {
+      margin-bottom: 30px;
+    }
+
+    .left-search,
+    .right-search {
+      margin-top: 10px;
+    }
+
+    .left-search input,
+    .right-search input {
+      width: 140px;
+      height: 25px;
+      border-radius: 20px;
+      outline: none;
+      margin-left: 10px;
+      border: 1px solid #ccc;
+      padding-left: 20px;
+
+    }
+
+    input {
+      width: 15px;
+      height: 15px;
+    }
+
+    .left-top input,
+    .right-top input {
+      margin-left: 10px;
+    }
+
+    .left-top span:nth-child(3),
+    .right-top span:nth-child(3) {
+      margin-left: 50px;
+      color: #909399;
+    }
+
+    .left-content,
+    .right-content {
+      height: 210px;
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="left">
+      <div class="left-top">
+        <input type="checkbox">
+        <span>列表1</span>
+        <span><i>0</i>/<b>10</b></span>
+      </div>
+      <div class="left-search">
+        <input type="text" placeholder="请输入城市名">
+      </div>
+      <ul class="left-content">
+        <li><input type="checkbox">上海</li>
+        <li><input type="checkbox">北京</li>
+        <li><input type="checkbox">山西</li>
+        <li><input type="checkbox">深圳</li>
+        <li><input type="checkbox">南京</li>
+        <li><input type="checkbox">西安</li>
+        <li><input type="checkbox">成都</li>
+        <li><input type="checkbox">江苏</li>
+        <li><input type="checkbox">太原</li>
+        <li><input type="checkbox">大同</li>
+      </ul>
+    </div>
+    <div class="circle">
+      <div class="moveLeft">
+        <svg t="1568453227891" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          p-id="21206" width="32" height="32">
+          <path
+            d="M56.888889 512c0 251.363556 203.747556 455.111111 455.111111 455.111111s455.111111-203.747556 455.111111-455.111111S763.363556 56.888889 512 56.888889 56.888889 260.636444 56.888889 512z m532.110222-179.000889L409.998222 512l179.000889 179.000889a28.444444 28.444444 0 0 1-40.220444 40.220444l-199.111111-199.111111a28.444444 28.444444 0 0 1 0-40.220444l199.111111-199.111111a28.444444 28.444444 0 0 1 40.220444 40.220444z"
+            p-id="21207" fill="#bfbfbf"></path>
+        </svg>
+      </div>
+      <div class="moveRight">
+        <svg t="1568453280112" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          p-id="21861" width="32" height="32">
+          <path
+            d="M967.111111 512c0-251.363556-203.747556-455.111111-455.111111-455.111111s-455.111111 203.747556-455.111111 455.111111S260.636444 967.111111 512 967.111111 967.111111 763.363556 967.111111 512z m-532.110222 179.000889L614.001778 512l-179.000889-179.000889a28.444444 28.444444 0 0 1 40.22044401-40.220444l199.11111099 199.111111a28.444444 28.444444 0 0 1 0 40.220444l-199.11111099 199.111111a28.444444 28.444444 0 0 1-40.22044401-40.220444z"
+            p-id="21862" fill="#bfbfbf"></path>
+        </svg>
+      </div>
+    </div>
+    <div class="right">
+      <div class="right-top">
+        <input type="checkbox">
+        <span>列表2</span>
+        <span><i>0</i>/<b>10</b></span>
+      </div>
+      <div class="right-search">
+        <input type="text" placeholder="请输入城市名">
+      </div>
+      <ul class="right-content">
+        <li><input type="checkbox">江西</li>
+        <li><input type="checkbox">安徽</li>
+        <li><input type="checkbox">湖南</li>
+        <li><input type="checkbox">湖北</li>
+        <li><input type="checkbox">长沙</li>
+        <li><input type="checkbox">新疆</li>
+        <li><input type="checkbox">四川</li>
+        <li><input type="checkbox">海南</li>
+        <li><input type="checkbox">广州</li>
+        <li><input type="checkbox">台湾</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    // 获取元素
+    var leftBtn = document.querySelector('.left-top input')
+    var leftI = document.querySelector('.left-top i')
+    var rightBtn = document.querySelector('.right-top input')
+    var rightI = document.querySelector('.right-top i')
+    var moveLeft = document.querySelector('.moveLeft')
+    var moveRight = document.querySelector('.moveRight')
+    var leftUl = document.querySelector('.left-content ')
+    var rightUl = document.querySelector('.right-content')
+    var leftB = document.querySelector('.left b')
+    var rightB = document.querySelector('.right b')
+    var leftSearch = document.querySelector('.left-search input')
+    var rightSearch = document.querySelector('.right-search input')
+    var leftLis = document.querySelectorAll('.left-content li')
+    var rightLis = document.querySelectorAll('.right-content li')
+
+
+    //左边全选
+    leftBtn.onclick = function () {
+      var leftchecks = document.querySelectorAll('.left-content li input')
+      for (var i = 0; i < leftchecks.length; i++) {
+        leftchecks[i].checked = leftBtn.checked;
+      }
+      if (leftBtn.checked) {
+        leftI.innerText = leftchecks.length
+
+      } else {
+        leftI.innerText = 0;
+      }
+
+    }
+    // 右边全选
+    rightBtn.onclick = function () {
+      var rightchecks = document.querySelectorAll('.right-content li input')
+      for (var i = 0; i < rightchecks.length; i++) {
+        rightchecks[i].checked = rightBtn.checked;
+      }
+      if (rightBtn.checked) {
+        rightI.innerText = rightchecks.length
+
+      } else {
+        rightI.innerText = 0;
+      }
+
+    }
+    // 点击右侧的箭头，将左边选中内容添加到右面
+
+    moveRight.onclick = function () {
+      // 获取左侧所有的选中项
+      var allcheckedLeft = document.querySelectorAll('.left-content li input:checked');
+      // 将左侧选中的input添加到右侧
+      for (var i = 0; i < allcheckedLeft.length; i++) {
+        rightUl.appendChild(allcheckedLeft[i].parentNode)
+      }
+      // 左侧b和右侧b的显示情况
+      leftB.innerText = document.querySelectorAll('.left-content li input').length
+      rightB.innerText = document.querySelectorAll('.right-content li input').length
+
+    }
+
+    // 点击左侧的箭头，将右边选中内容添加到左面
+    moveLeft.onclick = function () {
+      // 获取左侧所有的选中项
+      var allcheckedLeft = document.querySelectorAll('.right-content li input:checked');
+      // 将左侧选中的input添加到右侧
+      for (var i = 0; i < allcheckedLeft.length; i++) {
+        leftUl.appendChild(allcheckedLeft[i].parentNode)
+      }
+      // 左侧b和右侧b的显示情况
+      leftB.innerText = document.querySelectorAll('.left-content li input').length
+      rightB.innerText = document.querySelectorAll('.right-content li input').length
+
+    }
+
+   // 当左侧搜索失去焦点的时候，下面的根据搜索的选中
+  leftSearch.onblur = function(){
+     // 获取左侧搜索框中的内容
+     var txt = leftSearch.value;
+     for(var i = 0;i<leftLis.length;i++){
+       if(txt === leftLis[i].innerText){
+          // 对应的input选中
+          leftLis[i].children[0].checked = true;
+          leftLis[i].style.backgroundColor= "#ccc"
+       }
+     }
+  }
+     // 当左侧搜索失去焦点的时候，下面的根据搜索的选中
+    rightSearch.onblur = function(){
+     // 获取左侧搜索框中的内容
+     var txt =rightSearch.value;
+     for(var i = 0;i<rightLis.length;i++){
+       if(txt === rightLis[i].innerText){
+          // 对应的input选中
+         rightLis[i].children[0].checked = true;
+         rightLis[i].style.backgroundColor="#ccc"
+       }
+     }
+  }
+  </script>
+</body>
+
+</html>

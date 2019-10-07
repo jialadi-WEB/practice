@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=
+  , initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+   *{
+     padding:0;
+     margin:0;
+   }
+   .container{
+     margin:100px 20px;
+     position: relative;
+ 
+   }
+   .line{
+     width: 500px;
+     background: #ccc;
+     height:5px;
+     border-radius: 3px;
+   }
+   .circle{
+     width: 20px;
+     height: 20px;
+     border-radius: 50%;
+     border: 2px solid #409eff;
+     position: absolute;
+     background: #fff;
+     top:-10px;
+     left:0;
+     cursor: pointer;
+   }
+   .shadow{
+     width:0;
+     height:5px;
+     border-radius: 3px;
+     position: absolute;
+     top:0;
+     left:0;
+     background: #409eff;
+   }
+   .msg{
+     width: 30px;
+     height: 30px;
+     line-height: 30px;
+     border-radius: 5px;
+     text-align: center;
+     background: #000;
+     color:#fff;
+     position: absolute;
+     top:-45px;
+     display: none;
+
+
+   }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="line"></div>
+     <div class="shadow"></div>
+     <div class="circle"></div>
+     <div class="msg">0</div>
+  </div>
+  <script>
+    // 获取元素
+    var shadow = document.querySelector('.shadow');
+    var circle = document.querySelector('.circle');
+    var msg = document.querySelector('.msg');
+    // 按下，移动，抬起事件都有
+    circle.onmousedown = function(e){
+      var x1 = e.offsetX;
+      document.onmousemove = function(e){
+        var x2 = e.clientX;
+        var x = x2-x1-20;
+        if(x>500){
+          circle.style.left = 500+'px';
+          shadow.style.width =500+'px';
+          msg.style.left = 500+'px';
+          return;
+        }
+        if(x<0){
+          return;
+        }
+        // 把获取的位置赋值给circle的left 
+        circle.style.left = x+'px';
+        shadow.style.width = x+'px';
+        msg.style.left = x+'px';
+        var num = parseInt(x2/500*100)
+        if(num<=6){
+          msg.innerText = 0;
+        }else if(num>=100){
+          msg.innerText = 100
+        }else{
+          msg.innerText = num;
+        }      
+      }
+    }
+    // 鼠标抬起的时候，清楚鼠标移动事件
+    document.onmouseup = function(){
+      // 清除移动事件
+      document.onmousemove = null;
+    }
+
+    // 当鼠标移动到circle的时候，出现走的大小
+    circle.onmouseover = function(){
+      msg.style.display = "block"
+      
+    }
+    circle.onmouseout = function(){
+      msg.style.display = "none"
+      
+    }
+    
+  </script>
+</body>
+</html>

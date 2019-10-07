@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    ul li {
+      list-style: none;
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .local span {
+      display: inline-block;
+      width: 8px;
+      height: 5px;
+      background: url('./arrow.png') no-repeat;
+      vertical-align: middle;
+    }
+
+    body {
+      background: #333;
+    }
+
+    .left {
+      float: left;
+      color: #FDD000;
+      margin-right: 5px;
+      font-size: 18px;
+    }
+
+    .container {
+      width: 1200px;
+      margin: 200px auto;
+      position: relative;
+
+    }
+
+    .local {
+      float: left;
+      margin-right: 80px;
+      margin-top: 10px;
+      position: relative;
+    }
+
+    .search {
+      float: left;
+    }
+
+    .search .search-left {
+      float: left;
+      width: 290px;
+      height: 40px;
+      border: 2px solid #FDD000;
+      padding-left: 5px;
+      position: relative;
+    }
+
+    .search .search-right {
+      float: left;
+      width: 150px;
+      height: 44px;
+      line-height: 44px;
+      background: #FDD000;
+      text-align: center;
+      font-size: 17px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    .info {
+      color: #AFAA8F;
+      line-height: 40px;
+    }
+
+    .search-left span {
+      width: 0;
+      height: 0;
+      border: 5px solid;
+      border-color: #AFAA8F transparent transparent transparent;
+      position: absolute;
+      top: 19px;
+      left: 35px;
+    }
+
+    .allcity {
+      background: #fff;
+      position: absolute;
+      top: 20px;
+      left: 0px;
+      width: 67px;
+      text-align: center;
+      display: none;
+    }
+
+    .allcity li {
+      font-size: 12px;
+      height: 25px;
+      line-height: 25px;
+    }
+
+    .sel {
+      position: absolute;
+      z-index: 30;
+      width: 67px;
+      background: #333;
+    }
+
+    .search-left ul {
+      width: 50px;
+      text-align: center;
+      position: absolute;
+      top: 22px;
+      left: 0px;
+      padding-top: 20px;
+      display: none;
+      z-index: 22
+    }
+
+    .search-left ul li {
+      background: #fff;
+
+    }
+
+    .left-s {
+      width: 60px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      z-index: 0
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="local">
+      <div class="sel">
+        <div class="left">南京站
+        </div>
+        <span></span>
+      </div>
+      <ul class="allcity">
+        <li>杭州站</li>
+        <li>北京站</li>
+        <li>上海站</li>
+        <li>苏州站</li>
+        <li>浙江站</li>
+        <li>山西站</li>
+        <li>陕西站</li>
+        <li>南京站</li>
+        <li>南京站</li>
+        <li>成都站</li>
+        <li>厦门站</li>
+      </ul>
+    </div>
+    <div class="search">
+      <div class="search-left">
+        <div class="left-s">
+          <div class="small-s">
+            <div class="info">综合</div>
+            <span></span>
+          </div>
+          <ul class="search-ul">
+            <li>消息</li>
+            <li>路线</li>
+            <li>路线</li>
+            <li>路线</li>
+            <li>路线</li>
+            <li>路线</li>
+            <li>路线</li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="search-right">搜索</div>
+    </div>
+  </div>
+
+  <script>
+    // 获取对象
+    var local = document.querySelector('.local');
+    var allcity = document.querySelector('.allcity')
+    var lis = document.querySelectorAll('.allcity li')
+    local.onmouseenter = function () {
+      // 这里显示城市
+      allcity.style.display = "block"
+    }
+
+    local.onmouseleave = function () {
+      // 这里显示城市
+      allcity.style.display = "none"
+    }
+    // // 当鼠标移动到所 有城市站的时候，出现背景色是黄色
+    for (var i = 0; i < lis.length; i++) {
+      lis[i].onmouseover = function () {
+        for (var j = 0; j < lis.length; j++) {
+          lis[j].style.backgroundColor = ""
+        }
+        this.style.backgroundColor = '#EBC203'
+
+      }
+
+    }
+
+
+    // 给综合添加事件
+    var zonghe = document.querySelector('.left-s')
+    var sulobj = document.querySelector('.search-ul')
+    var lisobj = document.querySelectorAll('.search-ul li')
+    zonghe.onmouseover = function () {
+      sulobj.style.display = "block";
+    }
+    zonghe.onmouseout = function () {
+      sulobj.style.display = "none";
+    }
+
+    for (var i = 0; i < lisobj.length; i++) {
+      lisobj[i].onmouseover = function () {
+        for (var j = 0; j < lisobj.length; j++) {
+          lisobj[j].style.backgroundColor = ""
+        }
+        this.style.backgroundColor = '#EBC203'
+
+      }
+
+    }
+
+
+
+
+
+
+    // var sum = 0;   // 1-1/2+1/3-1/4
+    // var i = 1;
+    // var t = 1;
+    // for (var i = 1; i <= 100; i++) {
+    //   sum += t*(1 / i)  
+    //   t = -t
+    // }
+    // console.log(sum)  //0.688172179310195
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      width: 400px;
+      margin: 100px auto;
+    }
+
+    .box {
+      width: 200px;
+      height: 200px;
+      background: #3295F2;
+      position: relative;
+      overflow: hidden;
+
+    }
+
+    .box div {
+      width: 200px;
+      height: 200px;
+      line-height: 200px;
+      background: lightcoral;
+      position: absolute;
+      left: -100%;
+      top: -100%;
+      text-align: center;
+      font-size:30px;
+    }
+
+    .trans {
+      transition: all 0.5s;
+    }
+
+    /* 设置动画 */
+
+    /* 右边进入 */
+    @keyframes enterRight {
+      from {
+        left: 100%;
+        top: 0;
+      }
+
+      to {
+        left: 0;
+        top: 0;
+      }
+    }
+
+    /* 右边离开 */
+    @keyframes leaveRight {
+      from {
+        left: 0;
+        top: 0;
+      }
+
+      to {
+        left: 100%;
+        top: 0;
+      }
+    }
+
+    /* 左边进入 */
+    @keyframes enterLeft {
+      from {
+        left: -100%;
+        top: 0;
+      }
+
+      to {
+        left: 0;
+        top: 0;
+      }
+    }
+
+    /* 左边离开 */
+
+    @keyframes leaveLeft {
+      from {
+        left: 0;
+        top: 0;
+      }
+
+      to {
+        left: -100%;
+        top: 0;
+      }
+    }
+
+    /* 上面进入 */
+    @keyframes enterTop {
+      from {
+        left: 0;
+        top: -100%;
+      }
+
+      to {
+        left: 0;
+        top: 0;
+      }
+    }
+
+    /* 上面离开 */
+    @keyframes leaveTop {
+      from {
+        left: 0;
+        top: 0;
+      }
+
+      to {
+        left: 0;
+        top: -100%;
+      }
+    }
+
+    /* 下面进入 */
+    @keyframes enterBottom {
+      from {
+        left: 0;
+        top: 100%;
+      }
+
+      to {
+        left: 0;
+        top: 0;
+      }
+    }
+    /* 下面离开 */
+      @keyframes leaveBottom {
+      from {
+        left: 0;
+        top: 0;
+      }
+
+      to {
+        left: 0;
+        top: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      <div class="trans">1</div>
+    </div>
+  </div>
+  <script>
+    // 获取元素
+    var box = document.querySelector('.box');
+    var shadow = document.querySelector('.box div');
+
+    // 计算坐标
+    var x1 = box.offsetLeft,
+      y1 = -box.offsetTop, // y轴的坐标是负数
+      x2 = x1 + box.offsetWidth,
+      y2 = y1 - box.offsetHeight,
+      x0 = (x1 + x2) / 2, // 中点的x
+      y0 = (y1 + y2) / 2; // 中点的y
+    // 求斜率,因为(x1,y1)和(x2,y2)这条对角线再坐标中一定经过的是第二和第四象限，
+    // 所以k肯定是负值，-k一定是正值
+    var k = (y2 - y1) / (x2 - x1);
+
+
+    box.onmouseover = function (e) {
+
+      var e = e || window.event;
+      //(x,y)是鼠标移入的点的坐标
+      var x = e.clientX,
+        y = -e.clientY;
+      // 这里的K是鼠标移入点和中心点之间的斜率
+      var k1 = (y - y0) / (x - x0);
+      //  由图知，当k<k1<-k时，鼠标一定是从左右方向移动的，反之，一定是从上下方向移动的
+      // 当鼠标是从左右方向移动时，如果x > x0，那么鼠标就是从右边移动的，反之就是从左边移动的；
+      // 当鼠标是从上下方向移动时，如果y > y0时，那么鼠标就是从上边移动的，反之就是从下边移动的。
+
+      if (k < k1 && k1 < -k) {
+        if (x > x0) {
+          // 证明是从右边进入的
+          shadow.style.animation = "enterRight 0.5s"
+          shadow.style.animationFillMode = "forwards";
+        } else {
+          //证明是从左边进入的
+          shadow.style.animation = "enterLeft 0.5s"
+          shadow.style.animationFillMode = "forwards";
+        }
+      } else {
+        if (y > y0) {
+          //证明是从上面进入的
+          shadow.style.animation = "enterTop 0.5s"
+          shadow.style.animationFillMode = "forwards";
+
+        } else {
+          //证明是从下面进入的
+          shadow.style.animation = "enterBottom 0.5s"
+          shadow.style.animationFillMode = "forwards";
+        }
+      }
+
+
+
+    }
+
+    box.onmouseout = function () {
+      var e = e || window.event;
+      //(x,y)是鼠标移入的点的坐标
+      var x = e.clientX,
+        y = -e.clientY;
+      // 这里的K是鼠标移入点和中心点之间的斜率
+      var k1 = (y - y0) / (x - x0);
+      //  由图知，当k<k1<-k时，鼠标一定是从左右方向移动的，反之，一定是从上下方向移动的
+      // 当鼠标是从左右方向移动时，如果x > x0，那么鼠标就是从右边移动的，反之就是从左边移动的；
+      // 当鼠标是从上下方向移动时，如果y > y0时，那么鼠标就是从上边移动的，反之就是从下边移动的。
+
+      if (k < k1 && k1 < -k) {
+        if (x > x0) {
+          // 证明是从右边出去的
+          shadow.style.animation = "leaveRight 0.5s"
+          shadow.style.animationFillMode = "forwards";
+        } else {
+          //证明是从左边出去的
+          shadow.style.animation = "leaveLeft 0.5s"
+          shadow.style.animationFillMode = "forwards";
+        }
+      } else {
+        if (y > y0) {
+          //证明是从上面离开的
+          shadow.style.animation = "leaveTop 0.5s"
+          shadow.style.animationFillMode = "forwards";
+        } else {
+          //证明是从下面离开的
+          shadow.style.animation = "leaveBottom 0.5s"
+          shadow.style.animationFillMode = "forwards";
+        }
+      }
+
+    }
+  </script>
+</body>
+
+</html>

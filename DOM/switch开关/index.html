@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .switch {
+      width: 40px;
+      height: 20px;
+
+      position: relative;
+      margin: 20px 0;
+      border-radius: 10px;
+    }
+
+    .circle {
+      width: 15px;
+      height: 15px;
+      background: #fff;
+      position: absolute;
+      border-radius: 50%;
+      transition: all 0.4s;
+    }
+
+    .left {
+      top: 2px;
+      left: 0;
+    }
+
+    .right {
+      top: 2px;
+      left: 25px;
+    }
+
+    .oridinary {
+      background: red;
+    }
+
+    .switch-active {
+      background: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="switch oridinary">
+    <div class="circle left"></div>
+  </div>
+  <script>
+    // 获取元素
+    var switch1 = document.querySelector('.switch');
+    var circle = document.querySelector('.circle')
+
+    // 函数封装
+    function changeclass(obj,class1,class2) {
+      if (obj.className === class1) {
+        obj.className = class2
+      } else {
+        obj.className = class1
+      }
+    }
+
+    switch1.onclick = function () {
+      changeclass(switch1,'switch oridinary',"switch switch-active");
+      changeclass(circle,'circle left',"circle right")
+     }
+
+    // switch1.onclick = function () {
+    //   // if (switch1.className === 'switch oridinary') {
+    //   //   switch1.className = "switch switch-active"
+    //   // } else {
+    //   //   switch1.className = "switch oridinary"
+    //   // } 
+    //   // 第二件是白色小圆滑倒右边
+    //   // if (circle.className === 'circle left') {
+    //   //   circle.className = "circle right"
+    //   // } else {s
+    //   //   circle.className = "circle left"
+    //   // }
+    // }
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .slidedown {
+      height: 40px;
+      line-height: 40px;
+      width: 220px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin: 10px;
+      padding: 0 10px;
+      position: relative;
+    }
+
+    .top {
+      overflow: hidden;
+    }
+
+    .top>div {
+      float: left;
+    }
+
+    div.icon {
+      float: right;
+    }
+
+    div.title {
+      color: #999;
+    }
+
+    .content {
+      width: 240px;
+      position: absolute;
+      left: 0;
+      top: 50px;
+      color: #666;
+      height: 0;
+      /* 溢出隐藏 */
+      overflow: hidden;
+    }
+    .all{
+      border: 1px solid #ccc;
+      border-radius: 5px;
+
+    }
+    .icon {
+      transition: all 1s;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slidedown">
+    <div class="top">
+      <div class="title">请选择</div>
+      <div class="icon">
+        <img src="./images/select.png" alt="">
+      </div>
+    </div>
+    <div class="content">
+      <div class="all">
+        <div class="list">
+          生吃大鲨鱼
+        </div>
+        <div class="list">
+          观看大熊猫
+        </div>
+        <div class="list">
+          生吃大鲨鱼
+        </div>
+        <div class="list">
+          油炸娃娃鱼
+        </div>
+        <div class="list">
+          生吃大鲨鱼
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    // 获取所有的list
+    var lists = document.querySelectorAll('.content .list');
+    // 获取title
+    var title = document.querySelector('.title')
+    var slidedown = document.querySelector('.slidedown')
+    var content = document.querySelector('.content');
+    var icon = document.querySelector('.icon')
+
+
+    var totalHeight = 0;
+
+    // 鼠标移动到List上面的时候会有背景色
+    for (var i = 0; i < lists.length; i++) {
+      lists[i].onmouseover = function () {
+        this.style.backgroundColor = "red"
+      }
+      lists[i].onmouseout = function () {
+        this.style.backgroundColor = ""
+      }
+      // 添加鼠标点击事件之后获取内容赋值给title
+      lists[i].onclick = function () {
+        title.innerText = this.innerText
+      }
+      totalHeight += lists[i].offsetHeight;
+    }
+
+
+    // 当鼠标点击下拉框的时候，小箭头旋转，还出现下拉框
+    slidedown.onclick = function (e) {
+      e.stopPropagation();
+      content.style.height = totalHeight + 2+'px'
+      content.style.transition = "height 0.4s"
+      // 箭头翻转
+      icon.style.transform = "rotate(180deg)"
+    }
+
+    // 点击document的时候再回去
+    document.onclick = function () {
+      content.style.height = 0 + 'px'
+      content.style.transition = "all 0.4s"
+      // 箭头翻转
+      icon.style.transform = "rotate(0deg)"
+    }
+  </script>
+</body>
+
+</html>

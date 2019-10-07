@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .item {
+      width: 540px;
+      height: 304px;
+    }
+
+    .item:nth-child(n) {
+      width: 165px;
+
+    }
+
+    .item:nth-child(1) {
+      width: 540px;
+
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .wrapper {
+      /* 这个设置时关键 */
+      width: 1190px;  
+      margin: 100px auto;
+      /* border: 1px solid red; */
+      height: 304px;
+      background-color: #f9f9f9;
+      position: relative;
+      overflow: hidden
+    }
+
+    .container {
+      width: 1300px;
+      height: 304px;
+      overflow: hidden;
+     
+    }
+
+    .item {
+      float: left;
+      position: relative;
+      overflow: hidden;
+      height: 304px;
+    }
+
+
+    .shadow div {
+      float: left;
+    }
+
+    div.name {
+      width: 100px;
+      height: 40px;
+      line-height: 40px;
+      background: #FF9D00;
+      color: #fff;
+      text-align: center;
+      float: right;
+      font-weight: 700;
+      font-size: 18px;
+      border-radius: 5px;
+    }
+
+    .text {
+      color: #fff;
+      width: 410px;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      /** 对象作为伸缩盒子模型显示 **/
+      -webkit-box-orient: vertical;
+      /** 设置或检索伸缩盒对象的子元素的排列方式 **/
+      -webkit-line-clamp: 2;
+      /** 显示的行数 **/
+      overflow: hidden;
+
+    }
+
+    .small {
+      position: absolute;
+      left: 0;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .content {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+
+    }
+
+    .item:first-child .small {
+      display: none
+    }
+
+    .item .shadow {
+      height: 50px;
+      background: rgba(0, 0, 0, 0.3);
+      position: absolute;
+      bottom: 0;
+      padding: 0 5px;
+      box-sizing: border-box;
+      width: 100%;
+      bottom: -50px;
+      transition: all 1s;
+    }
+
+    .item:first-child .shadow {
+      bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="item">
+        <div class="shadow">
+          <div class="text">【魔幻菲律宾】2019宿务集合，
+            薄荷岛魔幻巧克力山-杜马盖地深海巨兽同游-密林寻觅丛林怪猴-巫术小岛锡基霍尔环岛-处女岛追逐海豚，
+            菲律宾中部三岛环线8天7晚魔法之旅</div>
+          <div class="name">立即报名</div>
+        </div>
+        <div class="small">
+          <div class="content">
+            <h3>魔幻菲律宾</h3>
+            <p>宿务集合</p>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="shadow">
+          <div class="text">【魔幻菲律宾】2019宿务集合，
+            薄荷岛魔幻巧克力山-杜马盖地深海巨兽同游-密林寻觅丛林怪猴-巫术小岛锡基霍尔环岛-处女岛追逐海豚，
+            菲律宾中部三岛环线8天7晚魔法之旅</div>
+          <div class="name">立即报名</div>
+        </div>
+        <div class="small">
+          <div class="content">
+            <h3>魔幻菲律宾</h3>
+            <p>宿务集合</p>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="shadow">
+          <div class="text">【魔幻菲律宾】2019宿务集合，
+            薄荷岛魔幻巧克力山-杜马盖地深海巨兽同游-密林寻觅丛林怪猴-巫术小岛锡基霍尔环岛-处女岛追逐海豚，
+            菲律宾中部三岛环线8天7晚魔法之旅</div>
+          <div class="name">立即报名</div>
+        </div>
+        <div class="small">
+          <div class="content">
+            <h3>魔幻菲律宾</h3>
+            <p>宿务集合</p>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="shadow">
+          <div class="text">【魔幻菲律宾】2019宿务集合，
+            薄荷岛魔幻巧克力山-杜马盖地深海巨兽同游-密林寻觅丛林怪猴-巫术小岛锡基霍尔环岛-处女岛追逐海豚，
+            菲律宾中部三岛环线8天7晚魔法之旅</div>
+          <div class="name">立即报名</div>
+        </div>
+        <div class="small">
+          <div class="content">
+            <h3>魔幻菲律宾</h3>
+            <p>宿务集合</p>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="shadow">
+          <div class="text">【魔幻菲律宾】2019宿务集合，
+            薄荷岛魔幻巧克力山-杜马盖地深海巨兽同游-密林寻觅丛林怪猴-巫术小岛锡基霍尔环岛-处女岛追逐海豚，
+            菲律宾中部三岛环线8天7晚魔法之旅</div>
+          <div class="name">立即报名</div>
+        </div>
+        <div class="small">
+          <div class="content">
+            <h3>魔幻菲律宾</h3>
+            <p>宿务集合</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./common.js"></script>
+<script>
+  // 获取元素
+  var items = document.querySelectorAll('.item');
+  for (var i = 0; i < items.length; i++) {
+    items[i].style.backgroundImage = `url('./images/${i+1}.jpg')`;
+    // 给所有的item添加索引
+    items[i].index = i;
+
+    // 当鼠标移移动到谁上面，谁的宽度就变成540，其他的编程165，并且当前对应的shoadow显示，small隐藏
+    items[i].onmouseover = function () {
+
+      for (var j = 0; j < items.length; j++) {
+        // items[j].style.width = "165px"
+        animate(items[j], {
+          "width": 165
+        })
+        // 其他所有的small显示，shadow隐藏
+        items[j].children[0].style.bottom = "-50px";
+        items[j].children[1].style.display = "block";
+
+      }
+      // this.style.width = "540px";
+      animate(this, {
+        "width": 540
+      })
+      //并且当前对应的shoadow显示, small隐藏
+      this.children[0].style.bottom = "0px";
+      this.children[1].style.display = "none";
+
+    }
+  }
+</script>
+
+</html>

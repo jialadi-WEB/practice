@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .container {
+      width: 800px;
+      margin: 100px auto;
+    }
+
+    ul li {
+      height: 50px;
+      line-height: 50px;
+      border-bottom: 1px solid #ccc;
+      overflow: hidden;
+      transition: all 0.4s;
+    }
+    .slide{
+      font-size:12px;
+      padding-left:10px;
+    }
+    /* .title{
+      transition: all 0.4s;
+    } */
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <ul>
+      <li>
+        <div class="title">
+            1一致性 Consistency
+        </div>
+        <div class="slide">
+          <p> 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</p>
+          <p> 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</p>
+          <p> 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</p>
+        </div>
+
+      </li>
+      <li>
+          <div class="title">
+             2一致性 Consistency
+          </div>
+          <div class="slide">
+            <p> 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</p>
+            <p> 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</p>
+            <p> 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</p>
+          </div>
+  
+        </li>
+        <li>
+            <div class="title">
+                3一致性 Consistency
+            </div>
+            <div class="slide">
+              <p> 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</p>
+              <p> 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</p>
+              <p> 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</p>
+            </div>
+    
+          </li>
+          <li>
+              <div class="title">
+                 4一致性 Consistency
+              </div>
+              <div class="slide">
+                <p> 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</p>
+                <p> 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</p>
+                <p> 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</p>
+              </div>
+      
+            </li>
+    </ul>
+  </div>
+  <script>
+    // 获取元素
+    var title = document.querySelectorAll('.container li .title');
+    for(var i=0;i<title.length;i++){
+      title[i].onclick = function(){
+        for(var j=0;j<title.length;j++){
+           title[j].parentNode.style.height= "50px";
+        }
+         this.parentNode.style.height = "200px"; 
+      }
+    }
+  </script>
+</body>
+
+</html>

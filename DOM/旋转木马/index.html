@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      width: 1200px;
+      margin: 100px auto;
+      position: relative;
+    }
+
+    img {
+      position: absolute;
+      transition: all 1s;
+    }
+
+    .arrow-left {
+      left: 0;
+      top: 50%;
+      position: absolute;
+      z-index: 10;
+
+    }
+
+    .arrow-right {
+      right: 70px;
+      top: 50%;
+      position: absolute;
+      z-index: 10;
+    }
+
+    .content {
+      height: 500px;
+    }
+
+    .arrow {
+      display: none;
+      transition: all 1s;
+    }
+
+    /* img:first-child {
+      width: 800px;
+      height: 500px;
+      left: 210px;
+      top: 60px;
+      opacity: 1;
+      z-index: 4;
+    }
+
+    img:nth-child(2) {
+      width: 600px;
+      height: 400px;
+      left: 10px;
+      top: 70px;
+      opacity: 0.8;
+      z-index: 3;
+    }
+
+    img:nth-child(3) {
+      width: 600px;
+      height: 400px;
+      right: 10px;
+      top: 70px;
+      opacity: 0.8;
+      z-index: 3;
+    }
+
+    img:nth-child(4) {
+      width: 400px;
+      height: 200px;
+      left: 50px;
+      top: 20px;
+      opacity: 0.2;
+      z-index: 2;
+    }
+
+    img:nth-child(5) {
+      width: 400px;
+      height: 200px;
+      right: 50px;
+      top: 20px;
+      opacity: 0.2;
+      z-index: 2;
+    } */
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <img src="./images/slidepic1.jpg" alt="">
+      <img src="./images/slidepic2.jpg" alt="">
+      <img src="./images/slidepic3.jpg" alt="">
+      <img src="./images/slidepic4.jpg" alt="">
+      <img src="./images/slidepic5.jpg" alt="">
+    </div>
+    <div class="arrow">
+      <div class="arrow-left"><img src="./images/prev.png" alt=""></div>
+      <div class="arrow-right"><img src="./images/next.png" alt=""></div>
+    </div>
+  </div>
+  <script>
+    // 建立坐标
+    var arr = [{
+        width: "800px",
+        height: " 500px",
+        left: "210px",
+        top: "100px",
+        opacity: 1,
+        zIndex: 4,
+      },
+      {
+        width: "600px",
+        height: "400px",
+        left: "600px",
+        top: "70px",
+        opacity: 0.8,
+        zIndex: 3,
+      },
+      {
+        width: "400px",
+        height: "200px",
+        left: "770px",
+        top: "20px",
+        opacity: 0.2,
+        zIndex: 2,
+      },
+      {
+        width: "400px",
+        height: "200px",
+        left: "50px",
+        top: "20px",
+        opacity: 0.2,
+        zIndex: 2,
+      }, {
+        width: "600px",
+        height: "400px",
+        left: "0px",
+        top: "70px",
+        opacity: 0.8,
+        zIndex: 3,
+      }
+    ]
+    // 获取元素
+    var imgs = document.querySelectorAll('.content img');
+
+    function assign() {
+      for (var i = 0; i < imgs.length; i++) {
+        imgs[i].style.width = arr[i].width;
+        imgs[i].style.height = arr[i].height;
+        imgs[i].style.left = arr[i].left;
+        imgs[i].style.top = arr[i].top;
+        imgs[i].style.opacity = arr[i].opacity;
+        imgs[i].style.zIndex = arr[i].zIndex;
+      }
+    }
+    // 先上来调用一次
+    assign();
+    // 箭头的显示和隐藏
+    var arrow = document.querySelector('.arrow ')
+    var container = document.querySelector('.container');
+    container.onmouseenter = function () {
+      arrow.style.display = "block"
+    }
+    container.onmouseleave = function () {
+      arrow.style.display = "none"
+    }
+
+    // 设置一把锁,
+    var flag = true;
+    // 点击右侧箭头和点击左侧箭头
+    var arrowLeft = document.querySelector('.arrow .arrow-left')
+    var arrowRight = document.querySelector('.arrow .arrow-right')
+    //点击右侧按钮
+    // arrowRight.onclick = function () {
+    //   // 将第一个坐标取出来放到最后一个
+    //     arr.push(arr.shift())
+    //     assign();
+    // }
+    // // 点击左侧按钮
+    // arrowLeft.onclick = function () {
+    //   // 将最后一个取出来，放到第一个
+
+    //     arr.unshift(arr.pop());
+    //     assign();
+
+    // }
+
+
+    // 点击右箭头
+    arrowRight.onclick = throttle(function () {
+      arr.push(arr.shift())
+      assign();
+    }, 500)
+    // 点击左箭头
+    arrowLeft.onclick = throttle(function () {
+      // 将最后一个取出来，放到第一个
+      arr.unshift(arr.pop());
+      assign();
+
+    }, 500)
+
+    // 封装的节流函数 
+    function throttle(func, times) {
+      // 一个开关
+      let fals = true
+      return function () {
+        if (!fals) {
+          return; // 如果开关关闭了，那就直接不执行下边的代码
+        }
+        fals = false // 持续触发的话，fals一直是false，就会停在上边的判断那里
+        setTimeout(() => {
+          func.apply(this, arguments)
+          fals = true // 定时器到时间之后，会把开关打开，我们的函数就会被执行
+        }, times)
+      }
+    }
+  </script>
+</body>
+
+</html>

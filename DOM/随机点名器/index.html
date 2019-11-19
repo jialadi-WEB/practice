@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>随机点名</title>
+<script src="./jquery-1.12.4.js"></script>
+</head>
+<style type="text/css">
+		*{
+			margin:0;
+			padding:0;
+		}
+    html,body {
+      width: 100%;
+      height: 100%;
+      position: relative;
+			background:black;
+
+    }
+	
+		.box{
+			width:710px;
+			height:700px;
+			border: 1px solid white;
+			margin:0 auto;
+			position:relative;
+		}
+		.box div{
+			width:60px;
+			height:40px;
+			background:orangered;
+			font-size:30px;
+			line-height:40px;
+			text-align:center;
+			color:white;
+			float:left;
+			margin:20px;
+			cursor:pointer;
+      /* position: absolute;
+    
+       */
+		}
+		p{
+			width:200px;
+			height:80px;
+			font-size:50px;
+			line-height:80px;
+			text-align:center;
+			position:absolute;
+			bottom:20px;
+			left:50%;
+			margin-left:-100px;
+			color:white;
+			background:blueviolet;
+			cursor:pointer;
+		}
+		.choose{
+			background:white;
+			color:blueviolet;
+		}
+    /* 定义动画 */
+    /* @keyframes move {
+      0% {
+        left: 0;
+        top: 0;
+        transform: translate(0, 0) scale(0, 0);
+      }
+
+      100% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(3, 3);
+      }
+    } */
+	</style>
+<body>
+<div class='box'>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>7</div>
+<div>8</div>
+<div>9</div>
+<div>10</div>
+<div>11</div>
+<div>12</div>
+<div>13</div>
+<div>14</div>
+<div>15</div>
+<div>16</div>
+<div>17</div>
+<div>18</div>
+<div>19</div>
+<div>20</div>
+<div>21</div>
+<div>22</div>
+<div>23</div>
+<div>24</div>
+<div>25</div>
+<div>26</div>
+<div>27</div>
+<div>28</div>
+<div>29</div>
+<div>30</div>
+<div>31</div>
+<div>32</div>
+<div>33</div>
+<div>34</div>
+<div>35</div>
+<div>36</div>
+<div>37</div>
+<div>38</div>
+<div>39</div>
+<div>40</div>
+<div>41</div>
+<div>42</div>
+<div>43</div>
+<div>44</div>
+<div>45</div>
+<div>46</div>
+<div>47</div>
+<div>48</div>
+<p class="but">开始点名</p>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+$(function() {
+    var j = 0;
+    $(document).on('selectstart', function() {
+        return false
+    })
+    var timer,
+        n = 0
+    $('.box p').on('click', function() {
+        if (j == 0) {
+            j = 1;
+            $(".but").html("点名中");
+            timer = setInterval(function() {
+                n++
+
+                $('.box div').each(function(k, v) {
+
+                    $('.box div').eq(k).css({
+                        'background': color(),
+                        'color': color()
+                    })
+                })
+                console.log(n)
+                if (n >= 20) {
+
+                    clearInterval(timer)
+                    j = 0;
+                    $(".but").html("开始点名");
+                    n = 0
+                    $('.box div').css({
+                        'background': 'orangered',
+                        'color': 'white'
+                    })
+                    $('.box div').eq(name()).css({
+                        'background': 'white',
+                        'color': 'blueviolet'
+                       
+                    })
+                }
+            }, 100)
+        }
+
+
+
+
+    })
+
+    /*随机索引号，需要改的就直接改数字，多少人就改成多少个*/
+    function name() {
+        return Math.floor(Math.random() * 24)
+    }
+    /*随机的颜色封装函数*/
+    function color() {
+        var r = Math.floor(Math.random() * 256)
+        var g = Math.floor(Math.random() * 256)
+        var b = Math.floor(Math.random() * 256)
+        return 'rgb(' + r + ',' + g + ',' + b + ')'
+    }
+})
+</script>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    list-style: none
+  }
+  html,body{
+    height:4000px;
+  }
+  body{
+    border-right:5px solid #7A6E6E;
+  }
+
+  li {
+    width: 34px;
+    height: 35px;
+    background: #7A6E6E;
+    position: relative;
+    text-align: center;
+    border-radius:4px 0 0 4px;
+    
+  }
+  li::after{
+    position: absolute;
+    left:0;
+    bottom:0;
+    display: block;
+    width:80%;
+    height:1px;
+    background-color:#fff;
+    content: "";
+    z-index:10;
+  }
+  li:last-child::after {
+   height:0;
+  }
+
+  ul {
+    position: fixed;
+    right: 0;
+    bottom: 300px;
+  }
+
+  li span:nth-child(1) {
+    display: block;
+    width: 34px;
+    height: 35px;
+    background: #7A6E6E url('./toolbars.png') no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    border-radius:4px 0 0 4px;
+
+  }
+
+  li:nth-child(1) span:nth-child(1) {
+    background-position: -88px -175px;
+  }
+
+  li:nth-child(2) span:nth-child(1) {
+
+    background-position: -50px 0px;
+  }
+
+  li:nth-child(3) span:nth-child(1) {
+    background-position: -190px -100px;
+  }
+
+  li:nth-child(4) span:nth-child(1) {
+    background-position: -190px -150px;
+  }
+  li:nth-child(5) span:nth-child(1) {
+    background-position: -50px 0px;
+  }
+
+  li span:nth-child(2) {
+    display: block;
+    width: 62px;
+    height: 35px;
+    line-height: 35px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #c81623;
+    color:#fff;
+    font-size: 12px;
+    padding-right:15px;
+    transition: all 0.4s;
+    border-radius:4px 0 0 4px;
+  }
+</style>
+
+<body>
+  <ul>
+    <li>
+      <span></span>
+      <span>京东会员</span>
+    </li>
+    <li>
+      <span></span>
+      <span>购物车</span>
+    </li>
+    <li>
+      <span></span>
+      <span>优惠券</span>
+    </li>
+    <li>
+      <span></span>
+      <span>我的信息</span>
+    </li>
+    <li>
+        <span></span>
+        <span>联系客服</span>
+      </li>
+  </ul>
+  <script>
+    // 获取所有的div
+    var spans = document.querySelectorAll('ul li span:nth-child(1)');
+    for (var i = 0; i < spans.length; i++) {
+      spans[i].onmouseenter = function () {
+        //思想是改变left的值是负数就可以实现
+        this.nextElementSibling.style.left= "-62px";
+        this.style.backgroundColor = "#c81623";
+      }
+      // 鼠标离开之后
+      spans[i].onmouseleave = function () {
+        this.nextElementSibling.style.left= "0";
+        this.style.backgroundColor = "#7A6E6E";
+      }
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- 引入初始化 -->
+  <link rel="stylesheet" href="css/base.css">
+  <!-- 引入购物车样式 -->
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <div class="car">
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <input type="checkbox" id="all">全选
+          </th>
+          <th>
+            商品
+          </th>
+          <th>
+            单价
+          </th>
+          <th>
+            商品数量
+          </th>
+          <th>
+            小计
+          </th>
+          <th>
+            操作
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input type="checkbox">
+          </td>
+          <td>
+            <img src="uploads/01.jpg">
+            <p>牛奶</p>
+          </td>
+          <td>
+            20￥
+          </td>
+          <td>
+            <div class="count-c clearfix">
+              <a href="javascript:" class="reduce disabled">-</a>
+              <input type="text" value="1">
+              <a href="javascript:" class="add">+</a>
+            </div>
+          </td>
+          <td>
+            20￥
+          </td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <input type="checkbox">
+          </td>
+          <td>
+            <img src="uploads/01.jpg">
+            <p>牛奶</p>
+          </td>
+          <td>
+            20￥
+          </td>
+          <td>
+            <div class="count-c clearfix">
+              <a href="javascript:" class="reduce">-</a>
+              <input type="text" readonly value="2">
+              <a href="javascript:" class="add">+</a>
+            </div>
+          </td>
+          <td>
+            40￥
+          </td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <input type="checkbox">
+          </td>
+          <td>
+            <img src="uploads/01.jpg">
+            <p>牛奶</p>
+          </td>
+          <td>
+            20￥
+          </td>
+          <td>
+            <div class="count-c clearfix">
+              <a href="javascript:" class="reduce">-</a>
+              <input type="text" readonly value="2">
+              <a href="javascript:" class="add">+</a>
+            </div>
+          </td>
+          <td>
+            40￥
+          </td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <input type="checkbox">
+          </td>
+          <td>
+            <img src="uploads/01.jpg">
+            <p>牛奶</p>
+          </td>
+          <td>
+            20￥
+          </td>
+          <td>
+            <div class="count-c clearfix">
+              <a href="javascript:" class="reduce">-</a>
+              <input type="text" readonly value="2">
+              <a href="javascript:" class="add">+</a>
+            </div>
+          </td>
+          <td>
+            40￥
+          </td>
+          <td>
+            <a href="javascript:" class="del">删除</a>
+          </td>
+
+        </tr>
+
+      </tbody>
+    </table>
+    <div class="controls clearfix">
+      <a href="javascript:" class="del-all">删除所选商品</a>
+      <a href="javascript:" class="clear">清理购物车</a>
+      <a href="javascript:" class="pay">去结算</a>
+      <p>
+        已经选中<span id="totalCount">0</span>件商品;总价：<span id="totalPrice" class="total-price">0￥</span>
+      </p>
+    </div>
+  </div>
+  <div class="box">
+    购物车空空如也
+  </div>
+  <script>
+    // 获取元素
+    var tbody = document.querySelector('tbody');
+    var table = document.querySelector('table');
+
+    // 功能一:全选和不全选
+    var all = document.querySelector('#all');
+    var checkes = document.querySelectorAll('tbody input[type="checkbox"]')
+    all.onclick = function () {
+      for (var i = 0; i < checkes.length; i++) {
+        checkes[i].checked = this.checked;
+      }
+      // 计算总价
+      comTotalPrice();
+    }
+    // 所有单选框的长度
+    var allLength = checkes.length;
+    for (var i = 0; i < checkes.length; i++) {
+      var sum = 0;
+      checkes[i].onclick = function () {
+        // 判断选中的长度是否和总个数相等
+        var checkesLength = document.querySelectorAll('tbody input[type="checkbox"]:checked').length;
+        all.checked = checkesLength === allLength ? true : false;
+        //计算总价
+        comTotalPrice();
+      }
+    }
+
+    // 功能二：商品数量的增加和减少
+    var add = document.querySelectorAll('.add')
+    var reduce = document.querySelectorAll('.reduce')
+    // 点击增加
+    for (var j = 0; j < add.length; j++) {
+      var sum = 0;
+      add[j].onclick = function () {
+        var inp = this.parentNode.children[1].value;
+        inp++;
+        this.parentNode.children[1].value = inp;
+        // 计算小计
+        var tip = gettips(this, inp);
+        //让当前的行的复选框选中
+        this.parentNode.parentNode.parentNode.children[0].children[0].checked = true;
+        // 计算总价
+        comTotalPrice()
+
+      }
+
+    }
+    //点击减少
+    for (var k = 0; k < add.length; k++) {
+      var sum = 0;
+      reduce[k].onclick = function () {
+        var inp = this.parentNode.children[1].value;
+        if (inp < 2) {
+          return;
+        }
+        inp--;
+        this.parentNode.children[1].value = inp;
+        // 计算小计
+        var tip = gettips(this, inp);
+        //让当前的行的复选框选中
+        this.parentNode.parentNode.parentNode.children[0].children[0].checked = true;
+        // 计算总价
+        comTotalPrice()
+      }
+
+    }
+
+    // 功能三：计算小计
+    function gettips(obj, inp) {
+      var price = (obj.parentNode.parentNode.previousElementSibling.innerText).slice(0, -1);
+      var tip = obj.parentNode.parentNode.nextElementSibling;
+      tip.innerText = price * inp + '￥';
+      return price * inp
+    }
+
+    // 功能四：删除商品
+    var dels = document.querySelectorAll('.del');
+    for (var m = 0; m < dels.length; m++) {
+      dels[m].onclick = function () {
+        // 将该元素从tbody删除
+        // 这是获取的tr
+        this.parentNode.parentNode.remove();
+        //计算总价
+        comTotalPrice();
+        all.checked = false;
+
+      }
+    }
+
+    // 功能五：计算所有选中的总价和商品数量
+    var totalPrice = document.querySelector('.total-price');
+    var totalCount = document.querySelector('#totalCount');
+
+    function comTotalPrice() {
+      // 获取所有选中的input的小计和商品数量
+      var allcheckedinput = document.querySelectorAll('tbody input[type="checkbox"]:checked');
+      // 总价
+      var sum = 0;
+      // 商品数量
+      var count = 0;
+      for (var i = 0; i < allcheckedinput.length; i++) {
+        // 选中的商品的小计
+        var tip = +(allcheckedinput[i].parentNode.parentNode.children[4].innerText.slice(0, -1));
+        // 选中商品的数量
+        var num = +(allcheckedinput[i].parentNode.parentNode.children[3].children[0].children[1].value)
+        console.log(num)
+        sum += tip;
+        count += num;
+      }
+      totalPrice.innerText = sum + "￥"
+      //选中的数量总共
+      totalCount.innerText = count
+    }
+
+
+    // 功能六：清理购物车
+    var clear = document.querySelector('.clear');
+    var box = document.querySelector('.box');
+    clear.onclick = function () {
+      table.parentNode.remove();
+      // box显示
+      box.style.display = "block";
+    }
+
+    // 功能七：删除所选商品
+    var delAll = document.querySelector('.del-all');
+    delAll.onclick = function () {
+      var allcheckedinput = document.querySelectorAll('tbody input[type="checkbox"]:checked');
+      for (var i = 0; i < allcheckedinput.length; i++) {
+        tbody.removeChild(allcheckedinput[i].parentNode.parentNode)
+      }
+      // 计算总价
+      comTotalPrice();
+    }
+  </script>
+</body>
+
+</html>

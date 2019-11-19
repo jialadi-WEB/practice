@@ -1,0 +1,44 @@
+.box{
+  width: 1086px;
+  margin: 50px auto;
+  background: pink;
+  position: relative;
+}
+.box .item{
+  width: 204px;
+  border:1px solid #d2d0d0;
+  box-shadow: 0 0 5px #d8d6d6;
+  box-sizing: border-box;
+  padding:0 15px;
+  float: left;
+  margin:0 10px 10px 0;
+  position: absolute;
+  left:0;
+  top:0;
+
+
+}
+
+
+.item img{
+  margin:15px 0;
+}
+.item>p{
+  color:#333333;
+  font-weight:bold;
+  font-size:18px;
+  border-bottom:1px solid  #ccc;
+  box-sizing: border-box;
+  padding-bottom:10px;
+
+}
+.item .text p:first-child{
+  color:#8c338c;
+  font-size:14px;
+}
+.item .text p:last-child{
+  color:#777777;
+  text-align:right;
+  margin-top:18px;
+  margin-bottom:15px;
+}

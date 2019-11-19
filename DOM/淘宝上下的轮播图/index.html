@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .box {
+      width: 170px;
+      margin: 100px auto;
+      height: 570px;
+      position: relative;
+    }
+
+    .container {
+      overflow: hidden;
+      height: 570px;
+      position: relative;
+
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .container p {
+      font-size: 12px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      display: block;
+    }
+
+    .arrow {
+      width: 170px;
+    }
+
+    .arrow-top {
+      float: left;
+      width: 27px;
+      height: 27px;
+      position: absolute;
+      bottom: -30px;
+      background: url('./images/arrow.png') no-repeat 0 0;
+      left: 20px;
+
+    }
+
+    .arrow-bottom {
+      float: right;
+      width: 27px;
+      height: 27px;
+      position: absolute;
+      background: url('./images/arrow.png') no-repeat 0 -30px;
+      right: 50px;
+      bottom: -30px;
+    }
+    ul{
+      height:1620px;
+      position: absolute;
+      top:0;
+      left:0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="container">
+      <ul>
+        <li>
+          <img src="./images/1.jpg" alt="">
+          <p>美1祛斑素颜霜女正品裸妆遮瑕隔离面霜合一学生专用少女自然男士</p>
+        </li>
+        <li>
+          <img src="./images/1.jpg" alt="">
+          <p>美2祛斑素颜霜女正品裸妆遮瑕隔离面霜合一学生专用少女自然男士</p>
+        </li>
+        <li>
+          <img src="./images/1.jpg" alt="">
+          <p>美3祛斑素颜霜女正品裸妆遮瑕隔离面霜合一学生专用少女自然男士</p>
+
+        </li>
+        <li>
+          <img src="./images/1.jpg" alt="">
+          <p>美4祛斑素颜霜女正品裸妆遮瑕隔离面霜合一学生专用少女自然男士</p>
+
+        </li>
+        <li>
+          <img src="./images/1.jpg" alt="">
+          <p>美5祛斑素颜霜女正品裸妆遮瑕隔离面霜合一学生专用少女自然男士</p>
+
+        </li>
+        <li>
+          <img src="./images/1.jpg" alt="">
+          <p>美6祛斑素颜霜女正品裸妆遮瑕隔离面霜合一学生专用少女自然男士</p>
+
+        </li>
+        <li>
+          <img src="./images/1.jpg" alt="">
+          <p>美7祛斑素颜霜女正品裸妆遮瑕隔离面霜合一学生专用少女自然男士</p>
+
+        </li>
+        <li>
+          <img src="./images/1.jpg" alt="">
+          <p>美8祛斑素颜霜女正品裸妆遮瑕隔离面霜合一学生专用少女自然男士</p>
+
+        </li>
+        <li>
+          <img src="./images/1.jpg" alt="">
+          <p>美9祛斑素颜霜女正品裸妆遮瑕隔离面霜合一学生专用少女自然男士</p>
+
+        </li>
+      </ul>
+    </div>
+    <div class="arrow">
+      <div class="arrow-top"></div>
+      <div class="arrow-bottom"></div>
+    </div>
+  </div>
+  <script>
+   // 获取元素
+   var arrowTop= document.querySelector('.arrow-top');
+   var arrowBottom = document.querySelector('.arrow-bottom');
+
+    //添加点击事件
+    arrowTop.onclick = function(){
+       
+    }
+    arrowBottom.onclick = function(){
+      // 点击向下的时候
+      
+    }
+  </script>
+</body>
+
+</html>

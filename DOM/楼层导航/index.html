@@ -1,0 +1,182 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div class="top">
+    <img src="img/top1.png" alt="" />
+  </div>
+  <div class="louceng">
+    <!-- 楼层1 -->
+    <div class="jd jia">
+      <img src="img/jia.png" alt="" />
+    </div>
+    <!-- 楼层2 -->
+    <div class="jd dian">
+      <img src="img/dian.png" alt="" />
+    </div>
+    <!-- 楼层3 -->
+    <div class="jd fu">
+      <img src="img/fu.png" alt="" />
+    </div>
+    <!-- 楼层4 -->
+    <div class="jd mei">
+      <img src="img/mei.png" alt="" />
+    </div>
+  </div>
+  <div class="bottom">
+    <img src="img/bottom.png" alt="" />
+  </div>
+  <!-- 侧边栏 -->
+  <div class="subnav">
+    <ul>
+      <li>家电通讯</li>
+      <li>电脑数码</li>
+      <li>服饰精品</li>
+      <li>美容珠宝</li>
+    </ul>
+    <div class="back">返回</div>
+
+  </div>
+  <script>
+    // 功能分析1、当窗口滚动到距离顶部一定距离的时候，出现侧边栏
+    var subnav = document.querySelector('.subnav');
+    var back = document.querySelector('.back');
+    var jds = document.querySelectorAll('.jd');
+    var topBar = document.querySelector('.top');
+    var navLis = document.querySelectorAll('.subnav li')
+
+    // 获取楼层距离顶部的距离
+    var jia = document.querySelector('.jia').offsetTop; // 1095;
+    var dian = document.querySelector('.dian').offsetTop; // 1499;
+    var fu = document.querySelector('.fu').offsetTop; // 1911
+    var mei = document.querySelector('.mei').offsetTop; // 2325
+
+
+    var arr = [jia, dian, fu, mei];
+
+
+    // 根据滚动的距离的大小，侧边栏对应的li会高亮显示
+    var topBarHeight = topBar.offsetHeight;
+
+    var timer = null;
+
+    window.onscroll = function () {
+      // 获取屏幕滚动的高度
+      // 这样是兼容性的写法
+      var scrollHeight = document.documentElement.scrollTop || document.body.scrollTop;
+
+      if (scrollHeight >= topBarHeight) {
+        subnav.style.display = "block";
+      } else {
+        subnav.style.display = "none";
+      }
+
+      //当滚动到对应的楼层，对应的li添加类名current; 
+      if (scrollHeight >= jia && scrollHeight < dian) {
+        clearclass();
+        navLis[0].className = "current";
+      } else if (scrollHeight >= dian && scrollHeight < fu) {
+        clearclass()
+        navLis[1].className = "current"
+      } else if (scrollHeight >= fu && scrollHeight < mei) {
+        clearclass()
+        navLis[2].className = "current"
+      } else if (scrollHeight >= mei) {
+        clearclass()
+        navLis[3].className = "current"
+      }
+
+      // 点击返回的时候，回到最顶部按照动画的方式
+      back.onclick = function () {
+        // 以上2种方式都没有动画
+        // document.body.scrollTop =  document.documentElement.scrollTop = 0;
+        // scrollTo(0,0);
+        //  console.log( document.body.scrollTop ) //不支持
+
+        var nowHeight = document.documentElement.scrollTop;
+        if (nowHeight > 0) {
+          timer = setInterval(function () {
+            // 让document.documentELement的scrollTop不断减小
+            if (document.documentElement.scrollTop <= 0) {
+              clearInterval(timer); // 清除定时器
+            } else {
+              document.documentElement.scrollTop -= 100;
+            }
+
+          }, 50)
+
+        }
+
+      }
+    }
+
+    // 所有的li去除类
+    function clearclass() {
+      for (var i = 0; i < navLis.length; i++) {
+        navLis[i].className = ""
+      }
+    }
+
+
+
+
+    // 当点击侧边栏的li的时候，对应滚动到相应的楼层
+    for (var i = 0; i < navLis.length; i++) {
+      // 设置一个自定义属性
+      navLis[i].setAttribute('index',i)
+      navLis[i].onclick = function () {
+        // 根据索引，让jd滑动到不同的楼层
+        var index = this.getAttribute('index')
+        console.log(index)
+        for (var j = 0; j < navLis.length; j++) {
+          navLis[j].className = ""
+        }
+        //让当前的添加类名
+        this.className = "current"
+        //将距离给html，这样的是没有动画的，需要加上动画
+        // document.documentElement.scrollTop = arr[index]
+
+        var scrollHeight = document.documentElement.scrollTop;
+        // 获取当前浏览器的高度，如果高度大于点击的那个li对应的数组的索引，那么需要scrollHeight-10;如果高度小于点击恩等那个对应的li的数组索引
+        // 那么需要scrollHeight+10;
+        if (scrollHeight > arr[index]) {
+          // 减
+          moveupordownorback(-100, index)
+
+        } else {
+          //加
+          moveupordownorback(100, index)
+        }
+      }
+    }
+
+    // 封装滑动的函数
+    function moveupordownorback(speed, index) {
+      timer = setInterval(function () {
+        document.documentElement.scrollTop = document.documentElement.scrollTop + speed;
+        if (speed > 0) {
+          if (document.documentElement.scrollTop >= arr[index]) {
+            document.documentElement.scrollTop = arr[index];
+            clearInterval(timer)
+          }
+        } else {
+          if (document.documentElement.scrollTop <= arr[index]) {
+            document.documentElement.scrollTop = arr[index];
+            clearInterval(timer)
+          }
+
+        }
+      }, 100)
+
+    }
+  </script>
+</body>
+
+</html>

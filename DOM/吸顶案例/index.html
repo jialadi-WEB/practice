@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>防腾讯固定导航栏</title>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .main {
+      width: 1000px;
+      margin: 0 auto;
+    }
+
+    .sticky {
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    /*用js做的时候，这个是必须要加的,否则不能实现 */
+    .top {
+      height: 172px;
+    }
+
+    .nav {
+      height: 83px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="top">
+    <img src="images/top.png" />
+  </div>
+  <div class="nav">
+    <img src="images/nav.png" />
+  </div>
+  <div class="main">
+    <img src="images/main.png" />
+  </div>
+  <script>
+    // 获取元素
+    var topBar = document.querySelector('.top');
+    var nav = document.querySelector('.nav');
+    var main = document.querySelector('.main')
+
+    // 获取nav距离顶部的高度
+    var topHeight = topBar.offsetHeight;
+    // console.log(topHeight)  // 这个有值，必须在css设置，在js中，否则无法获取
+    var navHeight = nav.offsetHeight;
+
+    window.onscroll = function () {
+      // 记录窗口滑动的距离
+      // var scrollHeight = this.scrollTop; // 这个在js中不支持，在jq中支持
+
+      // 这是兼容性写法
+      var scrollHeight = document.documentElement.scrollTop || document.body.scrollTop
+      if (scrollHeight >= topHeight) {
+        nav.className = "nav sticky"
+        // 会出现人头迅速被压住，需要解决这个问题
+        main.style.marginTop = navHeight + 'px';
+
+      } else {
+        nav.className = "nav"
+        // 在这里再把上面的那个main的那个marginTop还回去
+        main.style.marginTop = "0px"
+      }
+
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .container {
+      /* 只有定位才能进行滑动 */
+      position: relative;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      transition: all 1s;
+    }
+
+    .box {
+      width: 100%;
+      height: 100%;
+    }
+
+    .one {
+      background: pink;
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .slide .two {
+      background: greenyellow;
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .three {
+      background: blueviolet;
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .four {
+      background: red;
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .btn {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+    }
+
+    .btn button {
+      outline: none;
+      border: none;
+      width: 90px;
+      height: 40px;
+      line-height: 40px;
+      background: #fff;
+    }
+
+    button.active {
+      background: #333333;
+      color: #fff;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="slide">
+      <div class="box one">1</div>
+      <div class="box two">2</div>
+      <div class="box three">3</div>
+      <div class="box four">4</div>
+    </div>
+    <div class="btn">
+      <button class="active">第一屏</button>
+      <button>第二屏</button>
+      <button>第三屏</button>
+      <button>第四屏</button>
+    </div>
+   
+  </div>
+ 
+  <script src="./move.js"></script>
+  <script>
+    // 点击按钮的时候，往下滑动
+    var btns = document.querySelectorAll('.btn button');
+    var slides = document.querySelectorAll('.slide .box')
+    var container = document.querySelector('.container')
+   
+    var cHeight = document.documentElement.clientHeight || document.body.clientHeight
+
+   
+
+    for (var i = 0; i < btns.length; i++) {
+      slides[i].style.height = cHeight + 'px'
+      slides[i].style.lineHeight = cHeight + 'px'
+      h = slides[0].offsetHeight;
+      btns[i].index = i;
+      // 点击按钮的时候进行滑动
+      btns[i].onclick = function () {
+        var index = this.index;
+        // 更改全局索引
+        i = index
+        for (var j = 0; j < btns.length; j++) {
+          btns[j].className = ""
+        }
+        this.className = "active"
+        // 点击对应的索引，滑动对应的屏幕
+        container.style.top = -index * h + 'px'
+        // var dis = -index * h;
+        // animate(container, dis)
+      }
+
+
+
+    }
+
+  
+
+  </script>
+</body>
+
+</html>

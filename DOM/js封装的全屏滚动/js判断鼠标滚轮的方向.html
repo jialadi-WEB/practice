@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .container {
+      /* 只有定位才能进行滑动 */
+      position: relative;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      transition: all 1s;
+    }
+
+    .box,
+    .slide {
+      width: 100%;
+      height: 100%;
+    }
+
+    .one {
+      background: pink;
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .slide .two {
+      background: greenyellow;
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .three {
+      background: blueviolet;
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .four {
+      background: red;
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="slide">
+      <div class="box one">1</div>
+      <div class="box two">2</div>
+      <div class="box three">3</div>
+      <div class="box four">4</div>
+    </div>
+  </div>
+  <script>
+    // js判断鼠标滚轮方向
+    /**
+    
+    1. 在谷歌和IE下面，提供了onmousewheel方法，给我们提供了wheelDelta属性，该属性的返回值：正值与负值，其中正值表示滚轮向上滚动，负值表示滚轮向下滚动
+    2. 在火狐中，提供 了DOMMouseScroll方法， 改方法提供了detail属性，该属性的返回值:正值和负值，其中正值表示滚轮向下滚动，负值表示滚轮向上滚动
+    firefox 是 DOMMouseScroll 事件，对应的滚轮信息（向前滚还是向后滚）存储在 detail 属性中，向前滚，这个属性值是 3 的倍数，反之，是 -3 的倍数；
+   firefox 之外的其他浏览器是 mousewheel 事件，对应的滚轮信息存储在 wheelDelta 属性中，向前滚，这个属性值是 -120 的倍数，反之， 120 的倍数
+    **/
+    function handle(delta) {
+      var s = delta + ": ";
+      if (delta < 0)
+        s += "您在向下滚……";
+      else
+        s += "您在向上滚……";
+      console.log(s)
+    }
+    //  封装鼠标滚动
+    function wheel(event) {
+      var delta = 0;
+      event = event || window.event;
+      if (event.wheelDelta) {
+        // 谷歌，为了出现正负1
+        delta = event.wheelDelta / 120;
+        if (window.opera) delta = -delta;
+      } else if (event.detail) {
+        // 火狐
+        // 谷歌，为了出现正负1
+        delta = -event.detail / 3;
+      }
+      if (delta)
+        handle(delta);
+    }
+
+
+    if (window.addEventListener)
+      // 火狐
+      window.addEventListener('DOMMouseScroll', wheel, false);
+    // 谷歌
+    window.onmousewheel = document.onmousewheel = wheel;
+  </script>
+</body>
+
+</html>
